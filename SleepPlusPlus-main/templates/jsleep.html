@@ -719,7 +719,7 @@ setInterval(transmitData,n*60*1000); // Every n minutes
 
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'hidden') {
-        alert('You have left the page, hence the experiment is ending.');
+        //alert('You have left the page, hence the experiment is ending.');
 		wake(force=true);
     }
 });
