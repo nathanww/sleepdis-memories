@@ -614,12 +614,8 @@ function wake(force=false) { //user is awake, redirect them to the wake page
 		alert("Difference: " + (Date.now() - parseInt(getCookie("lastlaunch"))));
 		return;
 	}
-	// TODO dialog confirmation to wake up (are you sure you want to end the session?)
-
-	// Confirm dialog
-	if (!confirm("Are you sure you want to end the session?")) {
-		return;
-	}
+	
+	
 	
 	closeFullscreen();
 	//setCookie("stage","wake",365*2);
