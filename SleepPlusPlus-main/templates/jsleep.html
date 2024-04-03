@@ -609,9 +609,7 @@ function wake(force=false) { //user is awake, redirect them to the wake page
 	if (force = false && !(Date.now() > (parseInt(getCookie("lastlaunch"))+(10800*1000))) || 
 	(DEBUG_MODE && Date.now() > parseInt(getCookie("lastlaunch"))+(30*1000))) {
 		alert("Please sleep for at least 3 hours before waking up");
-		alert("Last launch: " + getCookie("lastlaunch"));
-		alert("Current time: " + Date.now());
-		alert("Difference: " + (Date.now() - parseInt(getCookie("lastlaunch"))));
+		
 		return;
 	}
 	
