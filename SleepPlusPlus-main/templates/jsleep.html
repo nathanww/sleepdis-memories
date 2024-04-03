@@ -565,13 +565,13 @@ function transmitData() {
     // Set the timeout duration (e.g., 10000 milliseconds = 10 seconds)
     request.timeout = 10000; // Adjust this value based on your requirements
 
-    // Define what happens in case of a timeout
+    // Define what happens in case of a timeout--NOTHING, because we will just transmit the data again later.
     request.ontimeout = function () {
-        alert('Upload timed out. Please try again.'); // Display an alert message
+        //alert('Upload timed out. Please try again.'); // Display an alert message
         // If necessary, implement additional logic to handle the timeout, such as retrying the request or ending the application.
         // For example, if you are running this in a browser, you could reload or close the window (not recommended for user experience):
         // window.location.reload(); or window.close();
-		window.location.reload();
+		//window.location.reload();
     };
 
 	/*
@@ -588,9 +588,9 @@ function transmitData() {
 
     // Optional: Define what happens in case of an error (e.g., network issues)
     request.onerror = function () {
-        alert('Upload failed due to a network error.');
+      //  alert('Upload failed due to a network error.');
         // Implement logic to handle network errors
-		window.location.reload();
+		//window.location.reload();
     };
 
     request.send(formData);
