@@ -9,7 +9,7 @@ app = Flask(__name__)
 #data=request.args.get('keyword')
 
 def qualtrics():
-    return redirect('''https://mit.co1.qualtrics.com/jfe/form/SV_blKzdkNW6nGHyjI?pid='''+request.cookies.get("pid",default='')+"&condition="+request.cookies.get("condition",default='')+"&session="+request.cookies.get("session",default='')+"&totalStim="+request.cookies.get("totalStim",default='')+"&keyword="+request.args.get('keyword')+"&appVersion=5")
+    return redirect('''https://mit.co1.qualtrics.com/jfe/form/SV_blKzdkNW6nGHyjI?pid='''+request.cookies.get("pid",default='')+"&condition="+request.cookies.get("condition",default='')+"&session="+request.cookies.get("session",default='')+"&totalStim="+request.cookies.get("totalStim",default='')+"&appVersion=5")
 
 @app.route('/')
 def root():
