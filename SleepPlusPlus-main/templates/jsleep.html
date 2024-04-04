@@ -60,8 +60,8 @@ const setCondition = getUrlVars()["condition"] || getCookie("condition");
 
 // validate condition is either 0, 1 or 2
 if (setCondition != 0 && setCondition != 1 && setCondition != 2) {
-	alert("Invalid condition");
-	window.location.replace("/"); // Redirect to sign up
+	alert("Something went wrong! Please retry the link from your email; if this does not work please contact nathanww@media.mit.edu for help.Error details: condition not specified");
+	//window.location.replace("/"); // Redirect to sign up
 }
 else {
 	condition = setCondition;
@@ -76,12 +76,11 @@ else {
 // If we don't have cookies or url vars then redirect to sign up page for experiment
 
 if (!(neutralKeyword && negativeKeyword)) {
-	alert("Invalid or missing keywords");
-	window.location.replace("/"); // sign up page 
+alert("Something went wrong! Please retry the link from your email; if this does not work please contact nathanww@media.mit.edu for help.Error details: keyword not specified"); 
 }
 if (!condition) {
-	alert("Invalid or missing condition");
-	window.location.replace("/"); // sign up page
+	alert("Something went wrong! Please retry the link from your email; if this does not work please contact nathanww@media.mit.edu for help.Error details: condition not specified");
+
 }
 
 var keyword = getCookie("keyword") || neutralKeyword;
@@ -425,7 +424,7 @@ document.getElementById("soundcal").style.display = "none";
 
 function testMotion() {
     if (window.DeviceMotionEvent == null) {
-        alert("Unfortunately, your device or browser doesn't support motion data. It may help to try with a different browser");
+        alert("Unfortunately, your device or browser doesn't support motion data. It may help to try with a different browser. Make sure you are using a mobile device (not a computer)");
     } else if (DeviceMotionEvent.requestPermission) {
         DeviceMotionEvent.requestPermission().then(function(state) {
             if (state == "granted") {
@@ -474,7 +473,7 @@ function tm() { // TrackMotion
 		openFullscreen();
 		}
 	if (epochs == 10 && !changeDetected) {
-		alert("Your device doesn't seem to be sending motion data. You may need to give permission for this site to use the motion sensors, or try a different browser/device");
+		alert("Your device doesn't seem to be sending motion data. You may need to give permission for this site to use the motion sensors, or try a different browser/device (should be a mobile device, not a computer)");
 		}
 	oldx=xacc;
 	oldy=yacc;
