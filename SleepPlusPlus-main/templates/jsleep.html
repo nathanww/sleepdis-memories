@@ -51,7 +51,7 @@ Now we're ready to start the sleep mode. You should start this when you are read
 const urlParams = new URLSearchParams(window.location.search);
 var condition=-1;
 var arousal=false;
-var arousalMax = 6;
+var arousalMax = 3;
 //const keyword = getUrlVars()["keyword"] || getCookie("keyword");
 const neutralKeyword = getUrlVars()["neutralKeyword"] || getCookie("neutralKeyword");
 const negativeKeyword = getUrlVars()["negativeKeyword"] || getCookie("negativeKeyword");
@@ -143,9 +143,11 @@ var SIGMOTION=0.1;
 var BUFFERSIZE=800;
 var DEBUG_MODE=false;
 var STARTTIME=3600;
+STARTTIME=0; //for debugging
 var STOPTIME=12600;// 3.5 hours
 var AROUSAL_OFFSET=0;
 var ONTHRESH=0.2;
+ONTHRESH=0.8; //for debugging
 var TRAINSIZE=4;
 var AROUSAL_THRESH=0.99;
 var rstim=-1;
@@ -301,11 +303,7 @@ else {
 
 	condition=parseInt(cc);
 
-	session=parseInt(getCookie("session"))+1;
-	setCookie("session",session,365*2);
-	setCookie('lastlaunch', Date.now(), 365*2);
-	// Set a new cookie/variable to keep track if we are in a new day and therefore we can proceed with the next session
-	setCookie("newDay", 1, 365*2);
+	
 	}
 	else {
 	//session=parseInt(getCookie("session"));
@@ -439,6 +437,12 @@ function testMotion() {
     } else { // no need for permission
         motionAuthorized=true;
 		startRecordingMotion();
+		//now increment the session
+		session=parseInt(getCookie("session"))+1;
+		setCookie("session",session,365*2);
+		setCookie('lastlaunch', Date.now(), 365*2);
+		// Set a new cookie/variable to keep track if we are in a new day and therefore we can proceed with the next session
+		setCookie("newDay", 1, 365*2);
     }
 	
 }
@@ -634,8 +638,8 @@ function wake(force=false) { //user is awake, redirect them to the wake page
 		request.send(formData);
 		if (request.status == 200) {
 			setCookie("newDay", 0, 365*2);
-			if (parseInt(getCookie("session")) >= NumberOfSessions) { // TODO hard condition ? -> already completed, redirect always to survey
-				if (playedSound || true){
+			if (parseInt(getCookie("session")) >= NumberOfSessions || true) { // TODO hard condition ? -> already completed, redirect always to survey
+				if (playedSound ){
 					setCookie("stage","wake",365*2);
 					window.location.replace("https://mit.co1.qualtrics.com/jfe/form/SV_bOgIpx4VGTUrvW6"+ "?pid=" + pid+"&session="+session+"&condition="+condition+"&appVersion="+appVersion+"&neutralKeyword="+neutralKeyword+"&negativeKeyword="+negativeKeyword);
 				}
