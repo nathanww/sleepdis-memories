@@ -622,6 +622,7 @@ function wake(force=false) { //user is awake, redirect them to the wake page
 	//setCookie("stage","wake",365*2);
 	document.getElementById("waitdt").style.visibility = "visible";
 	setTimeout(function() {
+		pid = getUrlVars()["pid"];
 		let formData = new FormData();
 		formData.append("pid", pid);
 		formData.append("motionHistory",motionHistory);
