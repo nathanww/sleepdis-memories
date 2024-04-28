@@ -114,6 +114,7 @@ var calTimer='';
 var totalRuns=1;
 var wakelock = new NoSleep();
 var pid = getUrlVars()["pid"];
+setCookie("pid",pid,365*2);
 // Validate pid
 /*
 const regex = /^\d9\d2\d3\d6$/;
