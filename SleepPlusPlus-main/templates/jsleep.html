@@ -404,7 +404,7 @@ function getCookie(cname) {
 	}
 	return "";
 }
-pid=getCookie("pid");
+//pid=getCookie("pid");
 
 
 function reportSound() {
@@ -561,7 +561,7 @@ function transmitData() {
     formData.append("soundVolume", soundVolume);
     formData.append("controlMode", condition);
     formData.append("appVersion", appVersion);
-
+	//alert("Timed Sending data for pid "+pid);
     let request = new XMLHttpRequest();
     request.open("POST", "/sleepdata", true);
 
@@ -636,10 +636,11 @@ function wake(force=false) { //user is awake, redirect them to the wake page
 		let request = new XMLHttpRequest();
 		request.open("POST", "/sleepdata",false);
 		request.send(formData);
+		//alert("Sending data for pid "+pid);
 		if (request.status == 200) {
 			setCookie("newDay", 0, 365*2);
-			if (parseInt(getCookie("session")) >= NumberOfSessions || true) { // TODO hard condition ? -> already completed, redirect always to survey
-				if (playedSound ){
+			if (parseInt(getCookie("session")) >= NumberOfSessions ) { // TODO hard condition ? -> already completed, redirect always to survey
+				if (playedSound || true){
 					setCookie("stage","wake",365*2);
 					window.location.replace("https://mit.co1.qualtrics.com/jfe/form/SV_bOgIpx4VGTUrvW6"+ "?pid=" + pid+"&session="+session+"&condition="+condition+"&appVersion="+appVersion+"&neutralKeyword="+neutralKeyword+"&negativeKeyword="+negativeKeyword);
 				}
