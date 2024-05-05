@@ -342,12 +342,26 @@ testButton.addEventListener("click", function() {
 	playText("test", 0);
 });
 
+let navWakeLock=null;
+const requestWakeLock = async () => {
+  try {
+    navwakeLock = await navigator.wakeLock.request('screen');
+    navwakeLock.addEventListener('release', () => {
+      console.log('Screen Wake Lock was released');
+    });
+    console.log('Screen Wake Lock is active');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+};
+
 
 function startcal() {
 	try { //error handling
 	//acquire a wake lock to keep the screen on
 		wakelock.enable();
 		unlock(); //unlock the audio context
+		requestWakeLock(); //request a system wakelock in addition, may be more compatible
 	}
 	catch (error) {
 	alert("Your browser doesn't support some features used by this app, and it may not work properly. We recommend updating your browser or using a new version of Google Chrome");
