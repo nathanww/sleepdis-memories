@@ -525,7 +525,7 @@ function tm() { // TrackMotion
 		totalHistory.shift();
 	}
 	motionSum=sumArray(totalHistory);
-	if (epochs % 5 == 0) {
+	if (epochs % 5 == 0 || true) {
 		motionHistory.push(diff);
 		summedMotion.push(motionSum);
 		timestamps.push(Date.now());
