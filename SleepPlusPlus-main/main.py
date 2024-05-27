@@ -78,7 +78,22 @@ def sleepdata():
     data = {"status": "success"}
     return data, 200
     
-
+@app.route('/getdata',methods=['GET'])
+def getdata():
+    output=""
+    query = dc.query(kind='sleepdata')
+    query = query.add_filter('pid', '=', request.args['pid'])
+    l = query.fetch()
+    for item in l:
+        times=item['timestamps'].split(",")
+        running=item['running'].split(",")
+        motion=item['summedMotion'].split(",")
+        volume=item['soundVolume'].split(",")
+        mh=item['motionHistory'].split(",")
+        for i in range(len(times)):
+            output=output+times[i]+","+running[i]+","+motion[i]+","+volume[i]+","+mh[i]+"\n"
+        output=output+"***\n"
+    return output
 
 
 if __name__ == '__main__':
