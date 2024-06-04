@@ -490,6 +490,7 @@ function tm() { // TrackMotion
 		document.getElementById("testMotion").style.display = "none";
 		setInterval(antiburn,600000); //start the burnin protection
 		openFullscreen();
+		alert("Ready to start! To ensure data is recorded, it is important that you keep your phone's screen ON (do not lock it). You can place your phone face down on the bed with the screen on");
 		}
 	if (epochs == 10 && !changeDetected) {
 		alert("Your device doesn't seem to be sending motion data. You may need to give permission for this site to use the motion sensors, or try a different browser/device (should be a mobile device, not a computer)");
@@ -713,8 +714,11 @@ function startSound() {
 		}
 		soundhandle = setInterval(function () {
 			playedSound=true;
-			playText(keyword, tmVolume);
-			tmVolume = tmVolume * 2
+			playText(keyword, calVolume);
+			calVolume = calVolume * 2
+			if (calVolume > 1) {
+				calVolume=1;
+			}
 		}, 10000)
 		//}
 	}
