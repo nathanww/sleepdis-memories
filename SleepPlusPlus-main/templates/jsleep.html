@@ -155,8 +155,9 @@ var rstim=-1;
 var session=0;
 const randomizeCondition = false;
 var totalStim=0;
-var appVersion=5;
+var appVersion=6;
 var playedSound=false;
+var showedMessage=false;
 motionAuthorized=false;
 motionFunctional=false;
 
@@ -490,7 +491,10 @@ function tm() { // TrackMotion
 		document.getElementById("testMotion").style.display = "none";
 		setInterval(antiburn,600000); //start the burnin protection
 		openFullscreen();
+		if (!showedMessage) {
 		alert("Ready to start! To ensure data is recorded, it is important that you keep your phone's screen ON (do not lock it). You can place your phone face down on the bed with the screen on");
+showedMessage=true;
+}
 		}
 	if (epochs == 10 && !changeDetected) {
 		alert("Your device doesn't seem to be sending motion data. You may need to give permission for this site to use the motion sensors, or try a different browser/device (should be a mobile device, not a computer)");
@@ -615,11 +619,11 @@ function transmitData() {
     request.send(formData);
 
 	// Empty the arrays
-	motionHistory = [];
-	summedMotion = [];
-	timestamps = [];
-	running = [];
-	soundVolume = [];
+	//motionHistory = [];
+	//summedMotion = [];
+	//timestamps = [];
+	//running = [];
+	//soundVolume = [];
 }
 
 function wake(force=false) { //user is awake, redirect them to the wake page
@@ -738,7 +742,7 @@ function simulateArousal() {
 }
 
 setCookie("stage","sleep",365*2);
-const n = 5; // minutes
+const n = 60; // minutes
 setInterval(transmitData,n*60*1000); // Every n minutes
 
 document.addEventListener('visibilitychange', function() {
