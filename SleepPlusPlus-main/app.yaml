@@ -1,4 +1,4 @@
-runtime: python38 # or another supported version
+runtime: python312 # or another supported version
 
 instance_class: F1
 entrypoint: gunicorn -b :$PORT main:app
